@@ -1,0 +1,23 @@
+
+<div class="jokes" *ngIf="jokes.length">
+  <h2 class="pt-3 pb-3">My Chuck Norris Jokes</h2>
+  <button type="button" class="btn-primary" (click)="getJoke()">GET a joke</button>
+  <button type="button" class="btn-primary mt-3" (click)="selectAddJoke()">POST my own joke</button>
+
+  <div *ngIf="addJoke" class="mt-3">
+    <input  [(ngModel)]="newJoke" class="me-3"/>
+    <button class="btn-warning" (click)="postJoke(newJoke)">Add Joke</button>
+  </div>
+  
+  <div *ngFor='let joke of jokes'> 
+    <ul>
+      <li>
+        {{joke.value}} 
+        <button class="btn-primary m-1" (click)="removeJoke(joke.id)">Remove Joke</button>
+        <button class="btn-primary m-1" (click)="onSelect(joke)">Edit Joke</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<app-joke-details [joke]="selectedJoke"></app-joke-details>
